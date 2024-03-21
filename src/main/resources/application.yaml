@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: spring-websocket-tutorial
+    
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://auth-server:9000

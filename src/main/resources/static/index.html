@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Message Form</title>
+</head>
+<body>
+
+<form id="messageForm">
+    <label for="user">User:</label>
+    <input type="text" id="user" name="user" required>
+
+    <label for="message">Message:</label>
+    <input type="text" id="message" name="message" required>
+
+    <button type="button" onclick="sendMessage()">Send Message</button>
+</form>
+
+<div id="response"></div>
+
+<script>
+    function sendMessage() {
+        const user = document.getElementById('user').value;
+        const message = document.getElementById('message').value;
+
+        const socket = new WebSocket('ws://localhost:8080/ws/notifications');
+
+        socket.onopen = function (event) {
+            const data = {
+                user: user,
+                message: message
+            };
+            socket.send(JSON.stringify(data));
+        };
+
+        socket.onmessage = function (event) {
+            const responseDiv = document.getElementById('response');
+            responseDiv.innerHTML = 'Server says: ' + event.data;
+            // Handle the server response as needed
+        };
+
+        socket.onclose = function (event) {
+            console.log('Connection closed.');
+        };
+    }
+</script>
+
+</body>
+</html>
