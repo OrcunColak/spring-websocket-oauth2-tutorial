@@ -1,5 +1,5 @@
 # Read me
 
 The original idea is from  
-https://neuw.medium.com/spring-boot-3-oauth2-client-for-servlets-based-project-1343de8bab34
+https://medium.com/@HereAndBeyond/spring-boot-3-websocket-oauth-2-0-tls-bf479327339f
 
